@@ -155,6 +155,7 @@ int z_project(double *vector, double *vz, par_st par, long_st ist, char *fname);
 void print_cube(double *pgrid,long_st ist,par_st par,char *fName);
 void print_fixed_qp_density(double *psi, double *Cbs, double *vz, long_st ist, par_st par);
 void IPR(double *psi, double *ipr, long nstates, par_st par, long_st ist);
+void terminate(const char *msg);
 
 // Functions that write input or output - write.c
 void writeCurrentTime(FILE *pf);

@@ -144,7 +144,7 @@ int main(int argc, char *argv[]) {
         fread(psidummy, sizeof(double), ist.ngrid, ppsi);
         if (evalindex[counter].deps < par.deps) {    
             normalize(psidummy, par.dv, ist.ngrid);
-            sprintf(fname, "pzv%d.dat", counter);
+            sprintf(fname, "pzv%ld.dat", counter);
 			if ((z_project(psidummy, vz, par, ist, fname) == 0)) {
                 eval[nstates] = evalindex[counter].evalue;
                 de[nstates] = evalindex[counter].deps;
