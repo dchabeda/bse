@@ -80,11 +80,14 @@ void assign_atom_type(char *atype,long j);
 void init(double *potl,double *vx,double *vy,double *vz,double *ksqr,double *rx,double *ry,double *rz,par_st *par,long_st *ist);
 void init_size(long, char *argv[],par_st *,long_st *);
 void init_pot(double *vx,double *vy,double *vz,zomplex *potq,zomplex *potqx,par_st par,long_st ist,fftw_plan_loc planfw,fftw_plan_loc planbw,fftw_complex *fftwpsi);
+void init_pot_old(double *vx,double *vy,double *vz,zomplex *potq,par_st par,long_st ist,fftw_plan_loc planfw,fftw_plan_loc planbw,fftw_complex *fftwpsi);
 void init_psi(zomplex *psi,double *vx,double *vy,double *vz,long_st ist,par_st par,long *idum);
 double screenedcoulomb(double dr, double gamma);
 double longerpolate(double r,double dr,double *vr,double *pot,long npot,long n,long j);
 
 void read_conf(double *rx,double *ry,double *rz,atm_st *atm,long n,FILE *);
+void read_pot(double *vr,double *pot,long *npot,double *dr,atm_st *atm,long n,long ntype);
+
 
 double norm(zomplex *, double,long);
 double normalize_zomplex(zomplex *psi, double dr, long ngrid);
@@ -94,12 +97,13 @@ void norm_vector(double *vector, double dV, long length);
 double norm_rho(zomplex *rho,double dr,long ngrid);
 
 
-void write_psi(double *,double *,double *,double *,double *,long_st,par_st);
-void write_pot(double *,double *,double *,double *,long_st);
+// void write_psi(double *,double *,double *,double *,double *,long_st,par_st);
+// void write_pot(double *,double *,double *,double *,long_st);
 
 void scalar_product(zomplex *,zomplex *,zomplex *,double,long,long);
 
 void nerror(char *);
+void terminate(const char *msg);
 
 double rlong(double); 
 /*
@@ -116,7 +120,7 @@ double get_dot_ligand_size_z(double *rz,long n);
 void hartree(zomplex *rho,zomplex *potq,double *poth,long_st ist,fftw_plan_loc planfw,fftw_plan_loc planbw,fftw_complex *fftwpsi);
 void single_coulomb(double *psi,zomplex *potq,zomplex *potqx,double *poth,double *eval,long_st ist,par_st par,fftw_plan_loc planfw,fftw_plan_loc planbw,fftw_complex *fftwpsi,double *bsmat,double *h0mat);
 
-
+double interpolate(double r,double dr,double *vr,double *pot,int npot,int n,int j);
 
 double energy(zomplex *psi,zomplex *phi,double *potl,double *ksqr,long_st ist,par_st par,fftw_plan_loc planfw,fftw_plan_loc planbw,fftw_complex *fftwpsi);
 double energy_norm(zomplex *psi,zomplex *phi,double *potl,double *ksqr,long_st ist,par_st par,fftw_plan_loc planfw,fftw_plan_loc planbw,fftw_complex *fftwpsi);
@@ -154,14 +158,15 @@ void print_pz(double *psi,double *sige,double *vz,par_st par,long_st ist);
 int z_project(double *vector, double *vz, par_st par, long_st ist, char *fname);
 void print_cube(double *pgrid,long_st ist,par_st par,char *fName);
 void print_fixed_qp_density(double *psi, double *Cbs, double *vz, long_st ist, par_st par);
+static int istrapped(struct pzdata *data, long len);
+
 void IPR(double *psi, double *ipr, long nstates, par_st par, long_st ist);
-void terminate(const char *msg);
 
 // Functions that write input or output - write.c
 void writeCurrentTime(FILE *pf);
 void writeSeparation(FILE *pf);
 void writeCubeFile(double *rho, par_st par, long_st ist, char *fileName);
 
-static int istrapped(struct pzdata *data, long len);
+
 /*****************************************************************************/
 
