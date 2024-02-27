@@ -23,7 +23,9 @@ void init_size(long argc, char *argv[],par_st *par,long_st *ist) {
     fscanf (pf, "%lg %lg %lg", &par->dx, &par->dy, &par->dz);
   }
   fscanf (pf, "%d", &par->nocalcExciton);
-  fscanf (pf, "%d", &par->getDelocFlag);
+  fscanf (pf,"%d %lg", &par->setFermiEnergy, &par->fermiEnergy);
+  if (par->setFermiEnergy == 1) printf("\nSetting Fermi energy to %g!\n\n", par->fermiEnergy);
+  else {par->fermiEnergy = -0.180;}
   fclose(pf);
 
   // Set Defaults

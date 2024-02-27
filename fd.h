@@ -29,7 +29,7 @@ typedef struct st1 {
   double xmin, xmax, ymin, ymax, zmin, zmax, kxmin, kymin, kzmin;
   double Ekinmax, gamma, gamma2, Elmin, Elmax, Elumo, Ehomo, Vmin, Vmax;
   double deltae, deltah, deps, fermiEnergy;
-  int setdGridFlag, nocalcExciton, getDelocFlag;
+  int setdGridFlag, nocalcExciton, getDelocFlag, setFermiEnergy;
 } par_st;
 
 typedef struct st4 {
