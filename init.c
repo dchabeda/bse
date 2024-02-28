@@ -29,7 +29,6 @@ void init_size(long argc, char *argv[],par_st *par,long_st *ist) {
   fclose(pf);
 
   // Set Defaults
-  par->fermiEnergy = -0.180; // states with energies below are holes and above are electrons
   par->Ekinmax = 10.0; // kinetic energy maximum 
   ist->npot = 16384;    // length of pseudopotential files
   ist->natomtype = 20;
